@@ -1,0 +1,31 @@
+// RouteAI — Prisma Schema
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Waitlist {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@map("waitlist")
+}
+
+model Address {
+  id        Int      @id @default(autoincrement())
+  name      String
+  address   String
+  lat       Float
+  lng       Float
+  createdAt DateTime @default(now())
+
+  @@map("addresses")
+}
